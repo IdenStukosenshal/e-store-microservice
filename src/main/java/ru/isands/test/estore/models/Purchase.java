@@ -1,4 +1,4 @@
-package ru.isands.test.estore.dao.entity;
+package ru.isands.test.estore.models;
 
 
 import java.io.Serializable;
@@ -17,8 +17,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 @Entity
-@Table(name = "store_purchase")
+@Table(name = "purchase")
 public class Purchase implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,38 +29,38 @@ public class Purchase implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "purchase_counter")
-	@TableGenerator(name = "purchase_counter", pkColumnName = "name", pkColumnValue = "ru.isands.test.estore.dao.entity.Purchase", table = "counter", valueColumnName = "currentid", allocationSize = 1)
+	@TableGenerator(name = "purchase_counter", pkColumnName = "name", pkColumnValue = "ru.isands.test.estore.models.Purchase", table = "counter", valueColumnName = "currentid", allocationSize = 1)
 	@Column(name = "id_", unique = true, nullable = false)
-	Long id;
+	private Long id;
 	
 	/**
 	 * Идентификатор товара
 	 */
-	@Column(name = "electroId", nullable = false)
-	Long electroId;
+	@Column(name = "electro_id", nullable = false)
+	private Long electroId;
 	
 	/**
 	 * Идентификатор сотрудника
 	 */
-	@Column(name = "employeeId", nullable = false)
-	Long employeeId;
-	
-	/**
-	 * Идентификатор магазина
-	 */
-	@Column(name = "shopId", nullable = false)
-	Long shopId;
+	@Column(name = "employee_id", nullable = false)
+	private Long employeeId;
 	
 	/**
 	 * Дата совершения покупки
 	 */
-	@Column(name = "purchaseDate", nullable = false)
-	Date purchaseDate;
+	@Column(name = "purchase_date", nullable = false)
+	private Date purchaseDate;
 	
 	/**
 	 * Способ оплаты
 	 */
-	@Column(name = "type", nullable = false)
-	int type;
+	@Column(name = "type_id", nullable = false)
+	private Integer type;
+
+	/**
+	 * Идентификатор магазина
+	 */
+	@Column(name = "shop_id", nullable = false)
+	private Long shopId;
 	
 }

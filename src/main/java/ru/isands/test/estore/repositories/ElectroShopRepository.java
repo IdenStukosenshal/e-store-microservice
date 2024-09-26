@@ -1,9 +1,9 @@
-package ru.isands.test.estore.dao.repo;
+package ru.isands.test.estore.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import ru.isands.test.estore.dao.entity.ElectroShop;
-import ru.isands.test.estore.dao.entity.ElectroShopPK;
+import ru.isands.test.estore.models.ElectroShop;
+import ru.isands.test.estore.models.ElectroShopPK;
 
 public interface ElectroShopRepository extends JpaRepository<ElectroShop, ElectroShopPK> {
 	

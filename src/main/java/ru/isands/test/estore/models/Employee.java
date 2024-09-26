@@ -1,4 +1,4 @@
-package ru.isands.test.estore.dao.entity;
+package ru.isands.test.estore.models;
 
 
 import java.io.Serializable;
@@ -17,8 +17,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 @Entity
-@Table(name = "store_employee")
+@Table(name = "employee")
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,44 +29,50 @@ public class Employee implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "employee_counter")
-	@TableGenerator(name = "employee_counter", pkColumnName = "name", pkColumnValue = "ru.isands.test.estore.dao.entity.Employee", table = "counter", valueColumnName = "currentid", allocationSize = 2)
-	@Column(name = "id_", unique = true, nullable = false)
-	Long id;
+	@TableGenerator(name = "employee_counter", pkColumnName = "name", pkColumnValue = "ru.isands.test.estore.models.Employee", table = "counter", valueColumnName = "currentid", allocationSize = 2)
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
 	
 	/**
 	 * Фамилия сотрудника
 	 */
-	@Column(name = "lastname", nullable = false, length = 100)
-	String lastName;
+	@Column(name = "last_name", nullable = false, length = 100)
+	private String lastName;
 	
 	/**
 	 * Имя сотрудника
 	 */
-	@Column(name = "firstname", nullable = false, length = 100)
-	String firstName;
+	@Column(name = "first_name", nullable = false, length = 100)
+	private String firstName;
 	
 	/**
 	 * Отчество сотрудника
 	 */
-	@Column(name = "patronymic", nullable = false, length = 100)
-	String patronymic;
+	@Column(name = "patronymyc", nullable = false, length = 100)
+	private String patronymic;
 	
 	/**
 	 * Дата рождения сотрудника
 	 */
-	@Column(name = "birthDate", nullable = false)
-	Date birthDate;
+	@Column(name = "birth_date", nullable = false)
+	private Date birthDate;
 	
 	/**
 	 * Ссылка на должность сотрудника
 	 */
-	@Column(name = "positionId", nullable = false)
-	Long positionId;
+	@Column(name = "position_id", nullable = false)
+	private Long positionId;
+
+	/**
+	 * Идентификатор магазина
+	 */
+	@Column(name = "shop_id", nullable = false)
+	private Long shopId;
 	
 	/**
 	 * Пол сотрудника (true - мужской, false - женский)
 	 */
 	@Column(name = "gender", nullable = false)
-	boolean gender;
+	private boolean gender;
 
 }

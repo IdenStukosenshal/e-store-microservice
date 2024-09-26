@@ -1,4 +1,4 @@
-package ru.isands.test.estore.rest;
+package ru.isands.test.estore.restControllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package ru.isands.test.estore.dao.entity;
+package ru.isands.test.estore.models;
 
 import java.io.Serializable;
 
@@ -16,11 +16,11 @@ public class ElectroShopPK implements Serializable {
 	/**
 	 *  Идентификатор магазина
 	 */
-	Long shopId;
+	private Long shopId;
 	
 	/**
 	 *  Идентификатор электротовара
 	 */
-	Long electroItemId;
+	private Long electroItemId;
 
 }

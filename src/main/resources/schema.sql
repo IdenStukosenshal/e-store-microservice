@@ -1,31 +1,32 @@
-
+/*связь магазин-товар*/
 CREATE TABLE IF NOT EXISTS electro_shop (
 shop_id BIGINT NOT NULL,
 electro_item_id BIGINT NOT NULL,
-count INT,
+count_ INT NOT NULL,
 CONSTRAINT electro_shop_pk PRIMARY KEY(shop_id, electro_item_id)
 );
 
-
+/*магазин*/
 CREATE TABLE IF NOT EXISTS shop (
 id BIGINT NOT NULL AUTO_INCREMENT,
 name VARCHAR(250) NOT NULL,
-address TEXT,
+address TEXT NOT NULL,
 CONSTRAINT shop_pk PRIMARY KEY(id)
 );
 
-
+/*товары (реестр)*/
 CREATE TABLE IF NOT EXISTS electro_item (
 id BIGINT NOT NULL AUTO_INCREMENT,
 name VARCHAR(150) NOT NULL,
 e_type_id BIGINT NOT NULL,
 price BIGINT NOT NULL,
-count_ INT NOT NULL,  /*'возможные проблемы из-за имени'*/
-archive BOOL, /* 'BOOL and BOOLEAN are synonyms of TINYINT(1), Zero is false, anything else is true'*/
+count_ INT NOT NULL,  /*'возможные проблемы из-за имени count'*/
+archive BOOL NOT NULL, /* 'BOOL and BOOLEAN are synonyms of TINYINT(1), Zero is false, anything else is true'*/
 description TEXT,
 CONSTRAINT electro_item_pk PRIMARY KEY(id)
 );
 
+/*сотрудники (реестр)*/
 CREATE TABLE IF NOT EXISTS employee (
 id BIGINT NOT NULL AUTO_INCREMENT,
 last_name VARCHAR(100) NOT NULL,
@@ -34,10 +35,11 @@ patronymyc VARCHAR(100) NOT NULL,
 birth_date DATE NOT NULL,
 position_id BIGINT NOT NULL,
 shop_id BIGINT NOT NULL,
-gender BOOL,
+gender BOOL NOT NULL,
 CONSTRAINT employee_pk PRIMARY KEY(id)
 );
 
+/*покупки (реестр)*/
 CREATE TABLE IF NOT EXISTS purchase (
 id INT NOT NULL AUTO_INCREMENT,
 electro_id BIGINT NOT NULL,
@@ -48,25 +50,28 @@ shop_id BIGINT NOT NULL,
 CONSTRAINT purchase_pk PRIMARY KEY(id)
 );
 
-
+/*тип электроники*/
 CREATE TABLE IF NOT EXISTS electro_type (
 id BIGINT NOT NULL AUTO_INCREMENT,
 name VARCHAR(150) NOT NULL,
 CONSTRAINT electro_type_pk PRIMARY KEY(id)
 );
 
+/*связь тип электроники-сотрудники*/
 CREATE TABLE IF NOT EXISTS electro_employee (
 employee_id BIGINT NOT NULL,
 electro_type_id BIGINT NOT NULL,
 CONSTRAINT electro_employee_pk PRIMARY KEY(employee_id, electro_type_id)
 );
 
+/*должность*/
 CREATE TABLE IF NOT EXISTS position_type (
 id BIGINT NOT NULL AUTO_INCREMENT,
 name VARCHAR(150) NOT NULL,
 CONSTRAINT position_type_pk PRIMARY KEY(id)
 );
 
+/*тип покупки*/
 CREATE TABLE IF NOT EXISTS purchase_type (
 id BIGINT NOT NULL AUTO_INCREMENT,
 name VARCHAR(150) NOT NULL,
