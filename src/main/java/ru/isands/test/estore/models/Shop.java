@@ -25,7 +25,7 @@ public class Shop {
     @Column(name = "name", nullable = false, length = 250)
     private String name;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "address", nullable = false)
     private String address;
 }
 

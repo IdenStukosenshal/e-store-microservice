@@ -10,10 +10,10 @@ import ru.isands.test.estore.models.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	
-	@Query("select * from Employee e where e.lastName = ?1 and e.firstName = ?2 and e.patronymic = ?3 and e.birthDate = ?4")
+	@Query("select e from Employee e where e.lastName = ?1 and e.firstName = ?2 and e.patronymic = ?3 and e.birthDate = ?4")
 	public Employee findFullName(String lastName, String firstName, String patronymic, Date birthDate);
 	
-	@Query("select * from Employee e where e.positionId = ?1")
+	@Query("select e from Employee e where e.positionId = ?1")
 	public List<Employee> findByPosition(Long positionId);
 	
 }

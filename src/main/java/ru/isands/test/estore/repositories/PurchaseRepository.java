@@ -10,7 +10,7 @@ import ru.isands.test.estore.models.Purchase;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 	
-	@Query("select * from Purchase p where p.shopId = :shopId")
+	@Query("select p from Purchase p where p.shopId = :shopId")
 	public List<Purchase> findByShop(@Param("shopId") Long shopId);
 	
 }
