@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Список Типов Электротоваров</h1>
+<table>
+    <tr>
+        <th>Product Id</th>
+        <th>Product Name</th>
+    </tr>
+    <tr th:each="el: ${electroTypeList}" >
+        <td th:text="${el.id}"></td>
+        <td th:text="${el.name}"></td>
+    </tr>
+</table>
+
+<h2>Импорт данных из csv файла</h2>
+<form method="post" enctype="multipart/form-data" th:action="@{/electro_types}">
+    <input type="file" name="file" accept=".csv" required />
+    <button type="submit">Загрузить</button>
+</form>
+<div th:if="${message}"><p th:text="${message}"></p></div>
+</body>
+</html>

@@ -15,3 +15,5 @@ public class EStoreApplication {
 	}
 
 }
+
+//http://localhost:8081/
