@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("rest/electro-types")
 public class ElectroTypesRestController {
 
     private final ElectroTypeRepository electroTypeRepository;
@@ -17,44 +18,41 @@ public class ElectroTypesRestController {
         this.electroTypeRepository = electroTypeRepository;
     }
 
-    @GetMapping("/rest/electro_types")
+    @GetMapping("/")
     public List<ElectroType> getAllElectroTypes() {
         return electroTypeRepository.findAll();
     }
 
-    @GetMapping("/rest/electro_types/{id}")
+    @GetMapping("/{id}")
     public ElectroType getById(@PathVariable Long id) {
         return electroTypeRepository.findById(id).orElseThrow(EntityNotFOundException::new);
     }
 
-    @PostMapping("/rest/electro_types")
+    @PostMapping("/")
     public ElectroType addNewElectroType(@Valid @RequestBody ElectroType obj) {
         return electroTypeRepository.save(obj);
     }
 
-    @DeleteMapping("/rest/electro_types/{id}")
+    @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         if (electroTypeRepository.findById(id).isPresent()) {
             electroTypeRepository.deleteById(id);
         } else throw new EntityNotFOundException();
     }
 
-    @DeleteMapping("/rest/electro_types")
+    @DeleteMapping("/")
     public void deleteAllElectroTypes() {
         electroTypeRepository.deleteAll();
     }
 
-    @PutMapping("/rest/electro_types/{id}")
-    public ElectroType updateOrCreate(@RequestBody ElectroType newObj, @PathVariable Long id) {
+    @PutMapping("/")
+    public ElectroType update(@RequestBody ElectroType newObj) {
         return electroTypeRepository.
-                findById(id)
+                findById(newObj.getId())
                 .map(oldObj -> {
                     oldObj.setName(newObj.getName());
                     return electroTypeRepository.save(oldObj);
                 })
-                .orElseGet(() -> {
-                    newObj.setId(id);
-                    return electroTypeRepository.save(newObj);
-                });
+                .orElseThrow(EntityNotFOundException::new);
     }
 }

@@ -1,4 +1,4 @@
-package ru.isands.test.estore.models;
+package ru.isands.test.estore.models.dto;
 
 public class ErrorDetails {
     private String message;

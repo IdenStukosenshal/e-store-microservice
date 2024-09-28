@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Электротовары</title>
+</head>
+<body>
+<h1>Список Электротоваров</h1>
+<table>
+    <tr>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Electro type Id</th>
+        <th>Product Price</th>
+        <th>Product Quantity</th>
+        <th>Product Archive</th>
+        <th>Product Description</th>
+    </tr>
+    <tr th:each="elm: ${electroItemLst}" >
+        <td th:text="${elm.id}"></td>
+        <td th:text="${elm.name}"></td>
+        <td th:text="${elm.eTypeId}"></td>
+        <td th:text="${elm.price}"></td>
+        <td th:text="${elm.count}"></td>
+        <td th:text="${elm.archive}"></td>
+        <td th:text="${elm.description}"></td>
+    </tr>
+</table>
+
+<h2>Импорт данных из csv файла</h2>
+<form method="post" enctype="multipart/form-data" th:action="@{/electro-items}">
+    <input type="file" name="file" accept=".csv" required />
+    <button type="submit">Загрузить</button>
+</form>
+<div th:if="${message}"><p th:text="${message}"></p></div>
+</body>
+</html>

@@ -17,25 +17,19 @@ public class PlaceHolderController {
         return "sections/purchases.html";
     }
 
-    @GetMapping("/electro_items")
-    public String electroItems() {
-        return "sections/electro_items.html";
-    }
-
-    @GetMapping("/position_types")
+    @GetMapping("/position-types")
     public String positions() {
-        return "catalogs/position_types.html";
+        return "catalogs/position-types.html";
     }
-
 
     @GetMapping("/shops")
     public String shops() {
         return "catalogs/shops.html";
     }
 
-    @GetMapping("/purchase_types")
+    @GetMapping("/purchase-types")
     public String purchaseTypes() {
-        return "catalogs/purchase_types.html";
+        return "catalogs/purchase-types.html";
     }
 
 
