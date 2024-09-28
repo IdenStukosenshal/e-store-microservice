@@ -1,7 +1,7 @@
 package ru.isands.test.estore.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import ru.isands.test.estore.models.Shop;
 
-public interface ShopRepository extends CrudRepository<Shop, Long> {
+public interface ShopRepository extends JpaRepository<Shop, Long> {
 }

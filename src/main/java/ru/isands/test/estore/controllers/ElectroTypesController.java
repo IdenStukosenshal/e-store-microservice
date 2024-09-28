@@ -54,7 +54,6 @@ public class ElectroTypesController {
 
         } else {
             List<ElectroType> eltpL;
-            //проблема с кодировкой 1251
             try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream(), "Windows-1251"))) {
                 eltpL = br.lines().skip(1).map(readElectroTypeCSV).collect(Collectors.toList());
                 electroTypeRepository.saveAll(eltpL);
@@ -65,7 +64,6 @@ public class ElectroTypesController {
             model.addAttribute("message", "Файл "
                     + file.getOriginalFilename() + " был загружен");
         }
-        //return "catalogs/electro_types.html";
         return "redirect:/electro_types";
     }
 }

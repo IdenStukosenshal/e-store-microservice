@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class TEST_CONTRLS {
+public class PlaceHolderController {
 
     @GetMapping("/employees")
     public String employees() {
@@ -18,7 +18,7 @@ public class TEST_CONTRLS {
     }
 
     @GetMapping("/electro_items")
-    public String electro_items() {
+    public String electroItems() {
         return "sections/electro_items.html";
     }
 
@@ -34,7 +34,7 @@ public class TEST_CONTRLS {
     }
 
     @GetMapping("/purchase_types")
-    public String purchase_types() {
+    public String purchaseTypes() {
         return "catalogs/purchase_types.html";
     }
 
