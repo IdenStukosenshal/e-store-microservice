@@ -21,8 +21,8 @@ public class ExceptionRestControllerAdvice {
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<ErrorDetails> exceptionSQLICVHandler(SQLIntegrityConstraintViolationException exccc){
         ErrorDetails errorDetails = new ErrorDetails();
-        errorDetails.setMessage("Нельзя добавить запись из-за ограничений внешних ключей 😤 ,"
-                +" сначала добавьте запись в другую таблицу");
+        errorDetails.setMessage("Нельзя добавить/удалить запись из-за ограничений внешних ключей 😤 ,"
+                +" сначала добавьте/удалите запись в/из другую таблицу");
         return ResponseEntity.badRequest().body(errorDetails);
     }
 }

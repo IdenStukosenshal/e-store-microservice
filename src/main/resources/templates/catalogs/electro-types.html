@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
+    <a th:href="@{/}">На главную страницу</a>
     <meta charset="UTF-8">
     <title>Типы Электротоваров</title>
 </head>
@@ -20,6 +21,7 @@
 </table>
 
 <h2>Импорт данных из csv файла</h2>
+<a>таблица должна быть в кодировке UTF-8</a>
 <form method="post" enctype="multipart/form-data" th:action="@{/electro-types}">
     <input type="file" name="file" accept=".csv" required />
     <button type="submit">Загрузить</button>

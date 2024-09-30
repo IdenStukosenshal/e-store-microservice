@@ -54,7 +54,7 @@ public class ElectroTypesController {
             model.addAttribute("message", "Неверный формат файла");
         } else {
             List<ElectroType> eltpL;
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream(), "Windows-1251"))) {
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
                 eltpL = br.lines().skip(1).map(mapperElectroTypeCSV).collect(Collectors.toList());
                 electroTypeRepository.saveAll(eltpL);
             } catch (IOException ee) {
