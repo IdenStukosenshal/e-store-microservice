@@ -32,15 +32,18 @@ public class PlaceHolderController {
         return "catalogs/purchase-types.html";
     }
 
+    /*
     @GetMapping("/electro-shop")
     public String electroShop() {
-        return "Placeholder's Placeholder";
+        return "";
     }
 
     @GetMapping("/electro-employee")
     public String electroEmployee() {
-        return "Placeholder's Placeholder";
+        return "";
     }
+
+     */
 
 
 }

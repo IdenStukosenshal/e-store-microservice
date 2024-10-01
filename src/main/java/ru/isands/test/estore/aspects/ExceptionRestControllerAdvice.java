@@ -21,8 +21,10 @@ public class ExceptionRestControllerAdvice {
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<ErrorDetails> exceptionSQLICVHandler(SQLIntegrityConstraintViolationException exccc){
         ErrorDetails errorDetails = new ErrorDetails();
-        errorDetails.setMessage("Нельзя добавить/удалить запись в дочернюю таблицу из-за ограничений внешних ключей 😤 ,"
-                +" сначала добавьте/удалите запись в/из родительскую таблицу");
+        errorDetails.setMessage("Нельзя добавить запись в дочернюю таблицу без наличия соответствующих ключей в родительской таблице"
+                +"  или удалить запись в родительской таблице прежде удаления записей с зависящими ключами из дочерней таблицы."
+                +" 😤 "
+                );
         return ResponseEntity.badRequest().body(errorDetails);
     }
 }

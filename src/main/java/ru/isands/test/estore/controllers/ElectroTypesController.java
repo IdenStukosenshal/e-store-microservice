@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import ru.isands.test.estore.models.ElectroType;
 import ru.isands.test.estore.repositories.ElectroTypeRepository;
+import ru.isands.test.estore.services.MapperSevice;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Controller
@@ -21,21 +21,13 @@ import java.util.stream.Collectors;
 public class ElectroTypesController {
 
     private final ElectroTypeRepository electroTypeRepository;
+    private final MapperSevice mapperSevice;
 
-    private final Function<String, ElectroType> mapperElectroTypeCSV = (line) -> {
-        String[] fields = line.split(";");
-        if (fields.length != 2) {
-            //2 - количество полей модели
-            return null;
-        }
-        ElectroType etp = new ElectroType();
-        etp.setId(Long.parseLong(fields[0]));
-        etp.setName(fields[1]);
-        return etp;
-    };
 
-    public ElectroTypesController(ElectroTypeRepository electroTypeRepository) {
+    public ElectroTypesController(ElectroTypeRepository electroTypeRepository,
+                                  MapperSevice mapperSevice) {
         this.electroTypeRepository = electroTypeRepository;
+        this.mapperSevice = mapperSevice;
     }
 
 
@@ -49,13 +41,13 @@ public class ElectroTypesController {
     @PostMapping
     public String uploadElectroTypes(MultipartFile file,
                                      Model model) {
+        String fileName = file.getOriginalFilename();
 
-        if (!file.getOriginalFilename().endsWith(".csv")) {
+        if (!fileName.endsWith(".csv")) {
             model.addAttribute("message", "Неверный формат файла");
         } else {
-            List<ElectroType> eltpL;
             try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-                eltpL = br.lines().skip(1).map(mapperElectroTypeCSV).collect(Collectors.toList());
+                var eltpL = br.lines().skip(1).map(mapperSevice::mapperElectroTypeCSV).collect(Collectors.toList());
                 electroTypeRepository.saveAll(eltpL);
             } catch (IOException ee) {
                 model.addAttribute("message", "ошибка чтения файла");
