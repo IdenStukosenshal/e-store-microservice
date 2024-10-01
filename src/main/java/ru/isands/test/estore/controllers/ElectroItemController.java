@@ -49,7 +49,7 @@ public class ElectroItemController {
     }
 
     @PostMapping
-    public String uploadElectroTypes(MultipartFile file,
+    public String uploadElectroItems(MultipartFile file,
                                      Model model) {
 
         if (!file.getOriginalFilename().endsWith(".csv")) {

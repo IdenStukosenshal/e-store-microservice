@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -17,14 +19,17 @@ import javax.persistence.Table;
 @Table(name = "shop")
 public class Shop {
 
+    @NotNull
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank
     @Column(name = "name", nullable = false, length = 250)
     private String name;
 
+    @NotBlank
     @Column(name = "address", nullable = false)
     private String address;
 }

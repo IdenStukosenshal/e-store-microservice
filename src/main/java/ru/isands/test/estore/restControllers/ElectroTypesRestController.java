@@ -1,5 +1,6 @@
 package ru.isands.test.estore.restControllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 import ru.isands.test.estore.exceptions.EntityNotFOundException;
 import ru.isands.test.estore.models.ElectroType;
@@ -8,6 +9,7 @@ import ru.isands.test.estore.repositories.ElectroTypeRepository;
 import javax.validation.Valid;
 import java.util.List;
 
+@Tag(name = "Electro Types", description = "Сервис для выполнения операций над таблицей типов электротоваров")
 @RestController
 @RequestMapping("rest/electro-types")
 public class ElectroTypesRestController {
@@ -35,7 +37,7 @@ public class ElectroTypesRestController {
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
-        if (electroTypeRepository.findById(id).isPresent()) {
+        if (electroTypeRepository.existsById(id)) {
             electroTypeRepository.deleteById(id);
         } else throw new EntityNotFOundException();
     }
@@ -46,9 +48,9 @@ public class ElectroTypesRestController {
     }
 
     @PutMapping("/")
-    public ElectroType update(@RequestBody ElectroType newObj) {
-        return electroTypeRepository.
-                findById(newObj.getId())
+    public ElectroType update(@Valid @RequestBody ElectroType newObj) {
+        return electroTypeRepository
+                .findById(newObj.getId())
                 .map(oldObj -> {
                     oldObj.setName(newObj.getName());
                     return electroTypeRepository.save(oldObj);

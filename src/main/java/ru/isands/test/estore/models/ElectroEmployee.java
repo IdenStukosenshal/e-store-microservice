@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.IdClass;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -17,10 +18,12 @@ import javax.persistence.IdClass;
 @IdClass(ElectroEmployeePK.class)
 public class ElectroEmployee {
 
+    @NotNull
     @Id
     @Column(name = "employee_id", nullable = false )
     private Long employeeId;
 
+    @NotNull
     @Id
     @Column(name = "electro_type_id", nullable = false)
     private Long electroTypeId;

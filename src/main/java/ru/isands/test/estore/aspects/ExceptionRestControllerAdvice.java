@@ -17,12 +17,12 @@ public class ExceptionRestControllerAdvice {
         return ResponseEntity.badRequest().body(errorDetails);
     }
 
-    //java.sql.SQLIntegrityConstraintViolationException
+
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<ErrorDetails> exceptionSQLICVHandler(SQLIntegrityConstraintViolationException exccc){
         ErrorDetails errorDetails = new ErrorDetails();
-        errorDetails.setMessage("Нельзя добавить/удалить запись из-за ограничений внешних ключей 😤 ,"
-                +" сначала добавьте/удалите запись в/из другую таблицу");
+        errorDetails.setMessage("Нельзя добавить/удалить запись в дочернюю таблицу из-за ограничений внешних ключей 😤 ,"
+                +" сначала добавьте/удалите запись в/из родительскую таблицу");
         return ResponseEntity.badRequest().body(errorDetails);
     }
 }

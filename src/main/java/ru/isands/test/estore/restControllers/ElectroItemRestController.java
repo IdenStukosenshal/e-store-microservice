@@ -1,5 +1,6 @@
 package ru.isands.test.estore.restControllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 import ru.isands.test.estore.exceptions.EntityNotFOundException;
 
@@ -9,8 +10,9 @@ import ru.isands.test.estore.repositories.ElectroItemRepository;
 import javax.validation.Valid;
 import java.util.List;
 
+@Tag(name = "Electro Items", description = "Сервис для выполнения операций над таблицей электротоваров")
 @RestController
-@RequestMapping("/electro-items")
+@RequestMapping("rest/electro-items")
 public class ElectroItemRestController {
 
     private final ElectroItemRepository electroItemRepository;
@@ -36,7 +38,7 @@ public class ElectroItemRestController {
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
-        if (electroItemRepository.findById(id).isPresent()) {
+        if (electroItemRepository.existsById(id)) {
             electroItemRepository.deleteById(id);
         } else throw new EntityNotFOundException();
     }
@@ -47,7 +49,7 @@ public class ElectroItemRestController {
     }
 
     @PutMapping("/")
-    public ElectroItem update(@RequestBody ElectroItem newObj) {
+    public ElectroItem update(@Valid @RequestBody ElectroItem newObj) {
         return electroItemRepository.
                 findById(newObj.getId())
                 .map(oldObj -> {

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ public class ElectroShop {
 	/**
 	 * Идентификатор магазина
 	 */
+	@NotNull
 	@Id
 	@Column(name = "shop_id", nullable = false)
 	private Long shopId;
@@ -27,6 +29,7 @@ public class ElectroShop {
 	/**
 	 * Идентификатор электротовара
 	 */
+	@NotNull
 	@Id
 	@Column(name = "electro_item_id", nullable = false)
 	private Long electroItemId;
@@ -34,6 +37,7 @@ public class ElectroShop {
 	/**
 	 * Оставшееся количество
 	 */
+	@NotNull
 	@Column(name = "count_", nullable = false)
 	private Integer count;
 }
