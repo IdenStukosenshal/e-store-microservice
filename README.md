@@ -3,7 +3,12 @@
 Запуск приложения:
 1. Создать базу данных MySQL
 2. В application.properties прописать url, username, password для подключения к БД
-3. Запустить, загрузить таблицы либо одним архивом, либо в порядке от родительских к дочерним
+3. Скомпилировать, запустить, загрузить таблицы либо одним архивом, либо в порядке от родительских к дочерним.
+
+Порядок таблиц: 
+1. ElectroType, PositionType, PurchaseType, Shop
+2. ElectroItem, Employee,
+3. ElectroEmployee, ElectroShop, Purchase
 
 
  Доступ к web-интерфейсу приложения: http://localhost:8081/  
