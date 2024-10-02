@@ -8,6 +8,34 @@
     <title>Покупки</title>
 </head>
 <body>
-<h1>СПИСОК Покупок</h1>
+<h1>Список Покупок</h1>
+<table>
+    <tr>
+        <th> Id</th>
+        <th>electroId</th>
+        <th>employeeId</th>
+        <th>purchaseDate</th>
+        <th>type</th>
+        <th>shopId</th>
+    </tr>
+    <tr th:each="el: ${purchaseLst}" >
+        <td th:text="${el.id}"></td>
+        <td th:text="${el.electroId}"></td>
+        <td th:text="${el.employeeId}"></td>
+        <td th:text="${el.purchaseDate}"></td>
+        <td th:text="${el.type}"></td>
+        <td th:text="${el.shopId}"></td>
+    </tr>
+</table>
+
+<div>
+    <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
+    <ul>
+        <li th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:href="@{/purchases(page=${i}, size=${size})}" th:text="${i}"></a>
+        </li>
+    </ul>
+</div>
+
 </body>
 </html>

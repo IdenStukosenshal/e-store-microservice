@@ -10,26 +10,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import ru.isands.test.estore.models.ElectroItem;
 import ru.isands.test.estore.repositories.ElectroItemRepository;
-import ru.isands.test.estore.services.ElectroItemService;
 import ru.isands.test.estore.services.MapperSevice;
+import ru.isands.test.estore.services.PaginateService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/electro-items")
 public class ElectroItemController {
     private final ElectroItemRepository electroItemRepository;
-    private final ElectroItemService electroItemService;
     private final MapperSevice mapperSevice;
+    private final PaginateService<ElectroItem, ElectroItemRepository> paginateService;
 
-    public ElectroItemController(ElectroItemRepository electroItemRepository, ElectroItemService electroItemService, MapperSevice mapperSevice) {
+    public ElectroItemController(ElectroItemRepository electroItemRepository,
+                                 MapperSevice mapperSevice
+    ) {
         this.electroItemRepository = electroItemRepository;
-        this.electroItemService = electroItemService;
         this.mapperSevice = mapperSevice;
+        this.paginateService = new PaginateService<>(electroItemRepository);
     }
 
 
@@ -37,10 +38,8 @@ public class ElectroItemController {
     public String electroItems(Model model,
                                @RequestParam("page") int page,
                                @RequestParam("size") int size) {
-        //List<ElectroItem> electroItemLst = electroItemRepository.findAll();
-        //model.addAttribute("electroItemLst", electroItemLst);
 
-        Page<ElectroItem> electroItemPageLst = electroItemService.findAllPaginated(page, size);
+        Page<ElectroItem> electroItemPageLst = paginateService.findAllPaginated(page, size);
         model.addAttribute("currentPage", page);
         model.addAttribute("size", size);
         model.addAttribute("totalPages", electroItemPageLst.getTotalPages());

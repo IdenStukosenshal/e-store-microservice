@@ -12,20 +12,20 @@
 <h2>Разделы:</h2>
 
 <a th:href="@{/electro-items(page=1, size=10)}">Электротовары</a>
-<a th:href="@{/purchases}">Покупки</a>
-<a th:href="@{/employees}">Сотрудники</a>
+<a th:href="@{/purchases(page=1, size=5)}">Покупки</a>
+<a th:href="@{/employees(page=1, size=5)}">Сотрудники</a>
 
 <h2>Справочники:</h2>
 
-<a th:href="@{/position-types}">Должности</a>
-<a th:href="@{/electro-types}">Типы электротоваров</a>
-<a th:href="@{/shops}">Магазины</a>
-<a th:href="@{/purchase-types}">Типы покупок</a>
+<a th:href="@{/position-types(page=1, size=10)}">Должности</a>
+<a th:href="@{/electro-types(page=1, size=10)}">Типы электротоваров</a>
+<a th:href="@{/shops(page=1, size=10)}">Магазины</a>
+<a th:href="@{/purchase-types(page=1, size=10)}">Типы покупок</a>
 
 <h2>Таблицы-связи:</h2>
 
-<a th:href="@{/electro-employee}">Связь: тип электротовара - сотрудник</a>
-<a th:href="@{/electro-shop}">Связь: магазин - товар</a>
+<a th:href="@{/electro-employee(page=1, size=10)}">Связь: тип электротовара - сотрудник</a>
+<a th:href="@{/electro-shop(page=1, size=10)}">Связь: магазин - товар</a>
 <a>  </a>
 <h3>Импорт данных из zip архива.</h3>
 <a>В архиве должны быть только csv таблицы в кодировке UTF-8</a>

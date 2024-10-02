@@ -8,6 +8,26 @@
     <title>Типы покупок</title>
 </head>
 <body>
-<h1>СПИСОК типов покупок</h1>
+<h1>Список типов покупок</h1>
+<table>
+    <tr>
+        <th> Id</th>
+        <th> Name</th>
+    </tr>
+    <tr th:each="el: ${purchaseTypesLst}" >
+        <td th:text="${el.id}"></td>
+        <td th:text="${el.name}"></td>
+    </tr>
+</table>
+
+<div>
+    <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
+    <ul>
+        <li th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:href="@{/purchase-types(page=${i}, size=${size})}" th:text="${i}"></a>
+        </li>
+    </ul>
+</div>
+
 </body>
 </html>

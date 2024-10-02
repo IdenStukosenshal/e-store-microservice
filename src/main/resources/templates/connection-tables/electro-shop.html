@@ -5,20 +5,21 @@
 <head>
     <a th:href="@{/}">На главную страницу</a>
     <meta charset="UTF-8">
-    <title>Магазины</title>
+    <title>electro-shop</title>
 </head>
 <body>
-<h1>Список Магазинов</h1>
+
+<h1>electro-shop</h1>
 <table>
     <tr>
         <th> Id</th>
-        <th> Name</th>
-        <th> Address</th>
+        <th>electroItemId</th>
+        <th>count</th>
     </tr>
-    <tr th:each="el: ${shopLst}" >
-        <td th:text="${el.id}"></td>
-        <td th:text="${el.name}"></td>
-        <td th:text="${el.address}"></td>
+    <tr th:each="el: ${electroShopLst}" >
+        <td th:text="${el.shopId}"></td>
+        <td th:text="${el.electroItemId}"></td>
+        <td th:text="${el.count}"></td>
     </tr>
 </table>
 
@@ -26,10 +27,11 @@
     <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
     <ul>
         <li th:each="i : ${#numbers.sequence(1, totalPages)}">
-            <a th:href="@{/shops(page=${i}, size=${size})}" th:text="${i}"></a>
+            <a th:href="@{/electro-shop(page=${i}, size=${size})}" th:text="${i}"></a>
         </li>
     </ul>
 </div>
+
 
 </body>
 </html>
