@@ -1,6 +1,7 @@
 package ru.isands.test.estore.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.isands.test.estore.enums.NamesAndOrders;
 import ru.isands.test.estore.repositories.*;
 
@@ -54,7 +55,8 @@ public class FileProcessingService {
         this.mapperSevice = mapperSevice;
     }
 
-    public void processingFile(List<String> fileList, NamesAndOrders enumName) {// String name){
+    @Transactional//если ошибка в какой-либо таблице, она не добавится???
+    public void processingFile(List<String> fileList, NamesAndOrders enumName){
         switch (enumName) {
             case ELECTRO_TYPE:
                 var lst1 = fileList.stream().skip(1).map(mapperSevice::mapperElectroTypeCSV).collect(Collectors.toList());

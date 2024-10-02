@@ -78,7 +78,7 @@ public class MapperSevice {
         }
         e.setPositionId(Long.parseLong(fields[5]));
         e.setShopId(Long.parseLong(fields[6]));
-        e.setGender(Boolean.parseBoolean(fields[7]));
+        e.setGender(booleanParser(fields[7]));
         return e;
     };
     public PositionType mapperPositionTypeCSV(String line){
@@ -101,7 +101,7 @@ public class MapperSevice {
         p.setElectroId(Long.parseLong(fields[1]));
         p.setEmployeeId(Long.parseLong(fields[2]));
         try{
-            p.setPurchaseDate(dateParser(fields[3]));
+            p.setPurchaseDate(dateTimeParser(fields[3]));
         }catch (ParseException excc ){
             System.out.println("Проблема парсинга даты");
             return null;
@@ -133,7 +133,15 @@ public class MapperSevice {
     }
 
     private Date dateParser(String strk) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat(strk);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy");
         return sdf.parse(strk);
+    }
+    private Date dateTimeParser(String strk) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy HH:mm");
+        return sdf.parse(strk);
+    }
+
+    private boolean booleanParser(String strk) {
+        return !strk.equals("0"); // Zero is false, anything else is true
     }
 }

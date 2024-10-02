@@ -18,7 +18,7 @@
         <th>Product Archive</th>
         <th>Product Description</th>
     </tr>
-    <tr th:each="elm: ${electroItemLst}" >
+    <tr th:each="elm: ${electroItems}" >
         <td th:text="${elm.id}"></td>
         <td th:text="${elm.name}"></td>
         <td th:text="${elm.eTypeId}"></td>
@@ -28,6 +28,15 @@
         <td th:text="${elm.description}"></td>
     </tr>
 </table>
+
+<div>
+    <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
+    <ul>
+        <li th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:href="@{/electro-items(page=${i}, size=${size})}" th:text="${i}"></a>
+        </li>
+    </ul>
+</div>
 
 <h2>Импорт данных из csv файла</h2>
 <a>таблица должна быть в кодировке UTF-8</a>
