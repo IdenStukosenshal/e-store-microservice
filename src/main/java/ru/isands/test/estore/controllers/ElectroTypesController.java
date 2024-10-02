@@ -26,7 +26,6 @@ public class ElectroTypesController {
     private final MapperSevice mapperSevice;
     private final PaginateService<ElectroType, ElectroTypeRepository> paginateService;
 
-
     public ElectroTypesController(ElectroTypeRepository electroTypeRepository,
                                   MapperSevice mapperSevice
     ) {
@@ -35,17 +34,12 @@ public class ElectroTypesController {
         this.paginateService = new PaginateService<>(electroTypeRepository);
     }
 
-
     @GetMapping
     public String electro_types(Model model,
                                 @RequestParam("page") int page,
                                 @RequestParam("size") int size) {
-        Page<ElectroType> electroTypePageLst = paginateService.findAllPaginated(page, size);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("size", size);
-        model.addAttribute("totalPages", electroTypePageLst.getTotalPages());
-        model.addAttribute("totalItems", electroTypePageLst.getTotalElements());
-        model.addAttribute("electroTypeLst", electroTypePageLst.getContent());
+        Page<ElectroType> PgLst = paginateService.findAllPaginated(page, size);
+        paginateService.addAtributesToModel(page, size, PgLst, model);
         return "catalogs/electro-types.html";
     }
 

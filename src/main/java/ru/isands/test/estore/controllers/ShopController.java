@@ -23,12 +23,8 @@ public class ShopController {
     public String shops(Model model,
                         @RequestParam("page") int page,
                         @RequestParam("size") int size) {
-        Page<Shop> shopPgLst = paginateService.findAllPaginated(page, size);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("size", size);
-        model.addAttribute("totalPages", shopPgLst.getTotalPages());
-        model.addAttribute("totalItems", shopPgLst.getTotalElements());
-        model.addAttribute("shopLst", shopPgLst.getContent());
+        Page<Shop> PgLst = paginateService.findAllPaginated(page, size);
+        paginateService.addAtributesToModel(page, size, PgLst, model);
         return "catalogs/shops.html";
     }
 }

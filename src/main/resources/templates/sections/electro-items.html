@@ -18,7 +18,7 @@
         <th>Product Archive</th>
         <th>Product Description</th>
     </tr>
-    <tr th:each="elm: ${electroItems}" >
+    <tr th:each="elm: ${itemLst}" >
         <td th:text="${elm.id}"></td>
         <td th:text="${elm.name}"></td>
         <td th:text="${elm.eTypeId}"></td>

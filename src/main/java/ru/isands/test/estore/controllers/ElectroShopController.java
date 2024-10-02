@@ -23,12 +23,8 @@ public class ElectroShopController {
     public String electroShop(Model model,
                               @RequestParam("page") int page,
                               @RequestParam("size") int size) {
-        Page<ElectroShop> electroShopPgLst = paginateService.findAllPaginated(page, size);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("size", size);
-        model.addAttribute("totalPages", electroShopPgLst.getTotalPages());
-        model.addAttribute("totalItems", electroShopPgLst.getTotalElements());
-        model.addAttribute("electroShopLst", electroShopPgLst.getContent());
+        Page<ElectroShop> PgLst = paginateService.findAllPaginated(page, size);
+        paginateService.addAtributesToModel(page, size, PgLst, model);
 
         return "connection-tables/electro-shop.html";
     }

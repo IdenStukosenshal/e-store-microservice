@@ -23,12 +23,8 @@ public class PurchaseTypeController {
     public String purchaseTypes(Model model,
                                 @RequestParam("page") int page,
                                 @RequestParam("size") int size) {
-        Page<PurchaseType> purchaseTypesPgLst = paginateService.findAllPaginated(page, size);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("size", size);
-        model.addAttribute("totalPages", purchaseTypesPgLst.getTotalPages());
-        model.addAttribute("totalItems", purchaseTypesPgLst.getTotalElements());
-        model.addAttribute("purchaseTypesLst", purchaseTypesPgLst.getContent());
+        Page<PurchaseType> PgLst = paginateService.findAllPaginated(page, size);
+        paginateService.addAtributesToModel(page, size, PgLst, model);
         return "catalogs/purchase-types.html";
     }
 }

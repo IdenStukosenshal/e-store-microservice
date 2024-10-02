@@ -23,12 +23,8 @@ public class PositionTypeController {
     public String positions(Model model,
                             @RequestParam("page") int page,
                             @RequestParam("size") int size) {
-        Page<PositionType> positionsPgLst = paginateService.findAllPaginated(page, size);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("size", size);
-        model.addAttribute("totalPages", positionsPgLst.getTotalPages());
-        model.addAttribute("totalItems", positionsPgLst.getTotalElements());
-        model.addAttribute("positionsLst", positionsPgLst.getContent());
+        Page<PositionType> PgLst = paginateService.findAllPaginated(page, size);
+        paginateService.addAtributesToModel(page, size, PgLst, model);
         return "catalogs/position-types.html";
     }
 }

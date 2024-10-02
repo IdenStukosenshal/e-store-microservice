@@ -23,12 +23,8 @@ public class EmployeeController {
     public String employees(Model model,
                             @RequestParam("page") int page,
                             @RequestParam("size") int size) {
-        Page<Employee> employeePgLst = paginateService.findAllPaginated(page, size);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("size", size);
-        model.addAttribute("totalPages", employeePgLst.getTotalPages());
-        model.addAttribute("totalItems", employeePgLst.getTotalElements());
-        model.addAttribute("employeeLst", employeePgLst.getContent());
+        Page<Employee> PgLst = paginateService.findAllPaginated(page, size);
+        paginateService.addAtributesToModel(page, size, PgLst, model);
         return "sections/employees.html";
     }
 }

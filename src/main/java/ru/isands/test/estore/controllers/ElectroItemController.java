@@ -39,12 +39,8 @@ public class ElectroItemController {
                                @RequestParam("page") int page,
                                @RequestParam("size") int size) {
 
-        Page<ElectroItem> electroItemPageLst = paginateService.findAllPaginated(page, size);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("size", size);
-        model.addAttribute("totalPages", electroItemPageLst.getTotalPages());
-        model.addAttribute("totalItems", electroItemPageLst.getTotalElements());
-        model.addAttribute("electroItems", electroItemPageLst.getContent());
+        Page<ElectroItem> PgLst = paginateService.findAllPaginated(page, size);
+        paginateService.addAtributesToModel(page, size, PgLst, model);
         return "sections/electro-items.html";
     }
 

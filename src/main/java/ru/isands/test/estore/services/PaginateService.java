@@ -4,9 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.ui.Model;
 
 
-public class PaginateService<Model, Repo extends JpaRepository<Model, ?>> {
+public class PaginateService<TableModel, Repo extends JpaRepository<TableModel, ?>> {
     private final Repo repo;
 
     public PaginateService(Repo repo) {
@@ -14,8 +15,15 @@ public class PaginateService<Model, Repo extends JpaRepository<Model, ?>> {
     }
     /*
     Объект PageRequest является реализацией интерфейса Pageable, нумерация начинается с 0 */
-    public Page<Model> findAllPaginated(int nPage, int sizePage) {
+    public Page<TableModel> findAllPaginated(int nPage, int sizePage) {
         Pageable pageable = PageRequest.of(nPage - 1, sizePage);
         return repo.findAll(pageable);
+    }
+    public void addAtributesToModel(int page, int size, Page<TableModel> itemPgLst, Model model){
+        model.addAttribute("currentPage", page);
+        model.addAttribute("size", size);
+        model.addAttribute("totalPages", itemPgLst.getTotalPages());
+        model.addAttribute("totalItems", itemPgLst.getTotalElements());
+        model.addAttribute("itemLst", itemPgLst.getContent());
     }
 }

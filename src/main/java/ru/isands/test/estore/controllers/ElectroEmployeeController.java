@@ -23,12 +23,8 @@ public class ElectroEmployeeController {
     public String electroEmployee(Model model,
                                   @RequestParam("page") int page,
                                   @RequestParam("size") int size) {
-        Page<ElectroEmployee> electroEmployeePgLst = paginateService.findAllPaginated(page, size);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("size", size);
-        model.addAttribute("totalPages", electroEmployeePgLst.getTotalPages());
-        model.addAttribute("totalItems", electroEmployeePgLst.getTotalElements());
-        model.addAttribute("electroEmployeeLst", electroEmployeePgLst.getContent());
+        Page<ElectroEmployee> PgLst = paginateService.findAllPaginated(page, size);
+        paginateService.addAtributesToModel(page, size, PgLst, model);
         return "connection-tables/electro-employee.html";
     }
 }
