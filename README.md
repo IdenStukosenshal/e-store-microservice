@@ -11,6 +11,8 @@
 2. ElectroItem, Employee,
 3. ElectroEmployee, ElectroShop, Purchase
 
+Сейчас ручное добавление таблиц реализовано только на 2-ух страницах: для ElectroType и для ElectroItem
+
 
  Доступ к web-интерфейсу приложения: http://localhost:8081/  
  Доступ к swagger-ui:  http://localhost:8081/estore-api.html
