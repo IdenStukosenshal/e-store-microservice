@@ -27,7 +27,7 @@ public class ElectroShopRestController {
         return electroShopRepository.findAll();
     }
 
-    //???
+
     @GetMapping("/{pk1}/{pk2}")
     public ElectroShop getById(@PathVariable Long pk1, @PathVariable Long pk2){
         ElectroShopPK esPK = new ElectroShopPK(pk1, pk2);
@@ -39,7 +39,6 @@ public class ElectroShopRestController {
         return electroShopRepository.save(obj);
     }
 
-    //???
     @DeleteMapping("/{pk1}/{pk2}")
     public void deleteById(@PathVariable Long pk1, @PathVariable Long pk2){
         ElectroShopPK esPK = new ElectroShopPK(pk1, pk2);
@@ -52,7 +51,6 @@ public class ElectroShopRestController {
         electroShopRepository.deleteAll();
     }
 
-    //???
     @PutMapping("/")
     public ElectroShop update(@Valid @RequestBody ElectroShop newObj){
         ElectroShopPK esPK = new ElectroShopPK(newObj.getShopId(), newObj.getElectroItemId());

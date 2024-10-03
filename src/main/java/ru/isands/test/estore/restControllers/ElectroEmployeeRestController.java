@@ -27,7 +27,6 @@ public class ElectroEmployeeRestController {
         return electroEmployeeRepository.findAll();
     }
 
-    //???
     @GetMapping("/{pk1}/{pk2}")
     public ElectroEmployee getById(@PathVariable Long pk1, @PathVariable Long pk2){
         ElectroEmployeePK eePK = new ElectroEmployeePK(pk1, pk2);
@@ -35,13 +34,11 @@ public class ElectroEmployeeRestController {
     }
 
 
-    //???
     @PostMapping("/")
     public ElectroEmployee addNewElectroEmployee(@Valid @RequestBody ElectroEmployee obj){
         return electroEmployeeRepository.save(obj);
     }
 
-    //???
     @DeleteMapping("/{pk1}/{pk2}")
     public void deleteById(@PathVariable Long pk1, @PathVariable Long pk2){
         ElectroEmployeePK eePK = new ElectroEmployeePK(pk1, pk2);

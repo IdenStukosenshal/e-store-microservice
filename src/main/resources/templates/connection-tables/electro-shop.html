@@ -10,28 +10,29 @@
 <body>
 
 <h1>electro-shop</h1>
-<table>
-    <tr>
-        <th> Id</th>
-        <th>electroItemId</th>
-        <th>count</th>
-    </tr>
-    <tr th:each="el: ${itemLst}" >
-        <td th:text="${el.shopId}"></td>
-        <td th:text="${el.electroItemId}"></td>
-        <td th:text="${el.count}"></td>
-    </tr>
-</table>
+<div th:if="${itemLst != null and !itemLst.isEmpty()}">
+    <table>
+        <tr>
+            <th> Id</th>
+            <th>electroItemId</th>
+            <th>count</th>
+        </tr>
+        <tr th:each="el: ${itemLst}">
+            <td th:text="${el.shopId}"></td>
+            <td th:text="${el.electroItemId}"></td>
+            <td th:text="${el.count}"></td>
+        </tr>
+    </table>
 
-<div>
-    <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
-    <ul>
-        <li th:each="i : ${#numbers.sequence(1, totalPages)}">
-            <a th:href="@{/electro-shop(page=${i}, size=${size})}" th:text="${i}"></a>
-        </li>
-    </ul>
+    <div>
+        <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
+        <ul>
+            <li th:each="i : ${#numbers.sequence(1, totalPages)}">
+                <a th:href="@{/electro-shop(page=${i}, size=${size})}" th:text="${i}"></a>
+            </li>
+        </ul>
+    </div>
 </div>
-
 
 </body>
 </html>

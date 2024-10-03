@@ -13,8 +13,8 @@ public class PaginateService<TableModel, Repo extends JpaRepository<TableModel, 
     public PaginateService(Repo repo) {
         this.repo = repo;
     }
-    /*
-    Объект PageRequest является реализацией интерфейса Pageable, нумерация начинается с 0 */
+
+    //нумерация начинается с 0, а на странице с 1
     public Page<TableModel> findAllPaginated(int nPage, int sizePage) {
         Pageable pageable = PageRequest.of(nPage - 1, sizePage);
         return repo.findAll(pageable);

@@ -62,7 +62,7 @@ public class ElectroItemController {
         }
         model.addAttribute("message", "Файл "
                 + file.getOriginalFilename() + " был загружен");
-        return "redirect:/electro-items";
+        return "redirect:/electro-items?page=1&size=10"; //quick fix
     }
 }
 

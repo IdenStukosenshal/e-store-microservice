@@ -12,15 +12,6 @@ import java.util.stream.Collectors;
 @Service
 public class FileProcessingService {
 
-            /*
-        Это не будет работать
-        Map<String, Function<String, ? extends _Model>> mapMappers = new HashMap<>(Map.of("ElectroEmployee.csv", mapperSevice::mapperElectroEmployeeCSV));
-        Map<String, JpaRepository<? extends _Model, ?>> mapRepo = new HashMap<>(Map.of("ElectroEmployee.csv", electroEmployeeRepository));
-        var list = fileList.stream().skip(1).map(mapMappers.get(name)).collect(Collectors.toList());
-        mapRepo.get(name).saveAll(list);
-
-         */
-
     private final ElectroEmployeeRepository electroEmployeeRepository;
     private final ElectroItemRepository electroItemRepository;
     private final ElectroShopRepository electroShopRepository;
@@ -55,7 +46,7 @@ public class FileProcessingService {
         this.mapperSevice = mapperSevice;
     }
 
-    @Transactional//если ошибка в какой-либо таблице, она не добавится???
+    @Transactional//Таблица с ошибочной записью не должна загрузиться
     public void processingFile(List<String> fileList, NamesAndOrders enumName){
         switch (enumName) {
             case ELECTRO_TYPE:
@@ -98,14 +89,4 @@ public class FileProcessingService {
     }
 }
 
-    /*  file.getInputStream()
-
-    * public void processingFile(InputStream is, String name) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            System.out.println(line);
-        }
-        * reader.lines().skip(1).map(MAPPER).collect(Collectors.toList());
-        * */
 

@@ -61,6 +61,6 @@ public class ElectroTypesController {
         }
         model.addAttribute("message", "Файл "
                 + file.getOriginalFilename() + " был загружен");
-        return "redirect:/electro-types";
+        return "redirect:/electro-types?page=1&size=10"; //quick fix
     }
 }

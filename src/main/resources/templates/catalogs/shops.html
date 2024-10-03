@@ -9,27 +9,28 @@
 </head>
 <body>
 <h1>Список Магазинов</h1>
-<table>
-    <tr>
-        <th> Id</th>
-        <th> Name</th>
-        <th> Address</th>
-    </tr>
-    <tr th:each="el: ${itemLst}" >
-        <td th:text="${el.id}"></td>
-        <td th:text="${el.name}"></td>
-        <td th:text="${el.address}"></td>
-    </tr>
-</table>
+<div th:if="${itemLst != null and !itemLst.isEmpty()}">
+    <table>
+        <tr>
+            <th> Id</th>
+            <th> Name</th>
+            <th> Address</th>
+        </tr>
+        <tr th:each="el: ${itemLst}">
+            <td th:text="${el.id}"></td>
+            <td th:text="${el.name}"></td>
+            <td th:text="${el.address}"></td>
+        </tr>
+    </table>
 
-<div>
-    <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
-    <ul>
-        <li th:each="i : ${#numbers.sequence(1, totalPages)}">
-            <a th:href="@{/shops(page=${i}, size=${size})}" th:text="${i}"></a>
-        </li>
-    </ul>
+    <div>
+        <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
+        <ul>
+            <li th:each="i : ${#numbers.sequence(1, totalPages)}">
+                <a th:href="@{/shops(page=${i}, size=${size})}" th:text="${i}"></a>
+            </li>
+        </ul>
+    </div>
 </div>
-
 </body>
 </html>

@@ -68,7 +68,7 @@ public class EmployeeRestController {
 					oldObj.setFirstName(newObj.getFirstName());
 					oldObj.setLastName(newObj.getLastName());
 					oldObj.setPatronymic(newObj.getPatronymic());
-					oldObj.setGender(newObj.isGender()); //cringe😣
+					oldObj.setGender(newObj.isGender());
 					oldObj.setBirthDate(newObj.getBirthDate());
 					oldObj.setPositionId(newObj.getPositionId());
 					oldObj.setShopId(newObj.getShopId());

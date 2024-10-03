@@ -33,7 +33,7 @@ public class HomeController {
         return "home";
     }
 
-    //Пока так себе
+    //обработку архива можно было бы вынести
     @PostMapping
     public String readFileZip(MultipartFile file, Model model) {
         if (!file.getOriginalFilename().endsWith(".zip")) {
@@ -55,11 +55,11 @@ public class HomeController {
                     allFilesMap.put(name, oneFileList);
                     zin.closeEntry();
                 }
+                //обработка таблиц в определённом порядке
                 for (NamesAndOrders nm : NamesAndOrders.values()) {
                     if (allFilesMap.containsKey(nm.getText())) {
                         fileProcessingService.processingFile(allFilesMap.get(nm.getText()), nm);
                     } else {
-                        System.out.println("Ошибка чтения файла: " + nm);
                         throw new IOException();//если имя не совпало
                     }
                 }

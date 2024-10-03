@@ -30,7 +30,6 @@ public class PurchaseRestController {
         return purchaseRepository.findById(id).orElseThrow(EntityNotFOundException::new);
     }
 
-    //Добавить проверку на наличие товара здесь?
     @PostMapping("/")
     public Purchase addNewPurchase(@Valid @RequestBody Purchase newObj){
         return purchaseRepository.save(newObj);
@@ -48,7 +47,6 @@ public class PurchaseRestController {
         purchaseRepository.deleteAll();
     }
 
-    //???
     @PutMapping("/")
     public Purchase update(@Valid @RequestBody Purchase newObj){
         return purchaseRepository

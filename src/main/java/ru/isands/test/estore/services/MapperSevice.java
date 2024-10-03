@@ -9,11 +9,9 @@ import java.util.Date;
 @Service
 public class MapperSevice {
 
-    //private final Function<String, ElectroType> mapperElectroTypeCSV = (line) -> {}
     public ElectroType mapperElectroTypeCSV(String line){
         String[] fields = line.split(";");
         if (fields.length != 2) {
-            //2 - количество полей модели
             return null;
         }
         ElectroType etp = new ElectroType();
@@ -73,14 +71,14 @@ public class MapperSevice {
         try{
             e.setBirthDate(dateParser(fields[4]));
         }catch (ParseException excc ){
-            System.out.println("Проблема парсинга даты");
             return null;
         }
         e.setPositionId(Long.parseLong(fields[5]));
         e.setShopId(Long.parseLong(fields[6]));
         e.setGender(booleanParser(fields[7]));
         return e;
-    };
+    }
+
     public PositionType mapperPositionTypeCSV(String line){
         String[] fields = line.split(";");
         if (fields.length != 2) {
@@ -103,7 +101,6 @@ public class MapperSevice {
         try{
             p.setPurchaseDate(dateTimeParser(fields[3]));
         }catch (ParseException excc ){
-            System.out.println("Проблема парсинга даты");
             return null;
         }
         p.setType(Integer.parseInt(fields[4]));

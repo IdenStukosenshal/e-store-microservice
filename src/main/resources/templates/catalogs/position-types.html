@@ -9,26 +9,26 @@
 </head>
 <body>
 <h1>Список Должностей</h1>
+<div th:if="${itemLst != null and !itemLst.isEmpty()}">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        <tr th:each="el: ${itemLst}">
+            <td th:text="${el.id}"></td>
+            <td th:text="${el.name}"></td>
+        </tr>
+    </table>
 
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-    </tr>
-    <tr th:each="el: ${itemLst}" >
-        <td th:text="${el.id}"></td>
-        <td th:text="${el.name}"></td>
-    </tr>
-</table>
-
-<div>
-    <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
-    <ul>
-        <li th:each="i : ${#numbers.sequence(1, totalPages)}">
-            <a th:href="@{/position-types(page=${i}, size=${size})}" th:text="${i}"></a>
-        </li>
-    </ul>
+    <div>
+        <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
+        <ul>
+            <li th:each="i : ${#numbers.sequence(1, totalPages)}">
+                <a th:href="@{/position-types(page=${i}, size=${size})}" th:text="${i}"></a>
+            </li>
+        </ul>
+    </div>
 </div>
-
 </body>
 </html>

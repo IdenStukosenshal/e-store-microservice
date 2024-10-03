@@ -8,40 +8,41 @@
 </head>
 <body>
 <h1>Список Электротоваров</h1>
-<table>
-    <tr>
-        <th>Product Id</th>
-        <th>Product Name</th>
-        <th>Electro type Id</th>
-        <th>Product Price</th>
-        <th>Product Quantity</th>
-        <th>Product Archive</th>
-        <th>Product Description</th>
-    </tr>
-    <tr th:each="elm: ${itemLst}" >
-        <td th:text="${elm.id}"></td>
-        <td th:text="${elm.name}"></td>
-        <td th:text="${elm.eTypeId}"></td>
-        <td th:text="${elm.price}"></td>
-        <td th:text="${elm.count}"></td>
-        <td th:text="${elm.archive}"></td>
-        <td th:text="${elm.description}"></td>
-    </tr>
-</table>
+<div th:if="${itemLst != null and !itemLst.isEmpty()}">
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Electro type Id</th>
+            <th>Product Price</th>
+            <th>Product Quantity</th>
+            <th>Product Archive</th>
+            <th>Product Description</th>
+        </tr>
+        <tr th:each="elm: ${itemLst}">
+            <td th:text="${elm.id}"></td>
+            <td th:text="${elm.name}"></td>
+            <td th:text="${elm.eTypeId}"></td>
+            <td th:text="${elm.price}"></td>
+            <td th:text="${elm.count}"></td>
+            <td th:text="${elm.archive}"></td>
+            <td th:text="${elm.description}"></td>
+        </tr>
+    </table>
 
-<div>
-    <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
-    <ul>
-        <li th:each="i : ${#numbers.sequence(1, totalPages)}">
-            <a th:href="@{/electro-items(page=${i}, size=${size})}" th:text="${i}"></a>
-        </li>
-    </ul>
+    <div>
+        <span th:text="'Page ' + ${currentPage} + ' of ' + ${totalPages}"></span>
+        <ul>
+            <li th:each="i : ${#numbers.sequence(1, totalPages)}">
+                <a th:href="@{/electro-items(page=${i}, size=${size})}" th:text="${i}"></a>
+            </li>
+        </ul>
+    </div>
 </div>
-
 <h2>Импорт данных из csv файла</h2>
 <a>таблица должна быть в кодировке UTF-8</a>
 <form method="post" enctype="multipart/form-data" th:action="@{/electro-items}">
-    <input type="file" name="file" accept=".csv" required />
+    <input type="file" name="file" accept=".csv" required/>
     <button type="submit">Загрузить</button>
 </form>
 <div th:if="${message}"><p th:text="${message}"></p></div>
